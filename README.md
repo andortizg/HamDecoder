@@ -81,6 +81,9 @@ Upload:      STM32CubeProgrammer (DFU) or SWD
 | `UI_LANG` | `LANG_ES` | On-screen language: `LANG_ES` (Spanish) or `LANG_EN` (English) |
 | `WF_H_DEF` | `40` | Default waterfall height in pixels |
 | `WF_AVG_DEF` | `0.7` | Waterfall time averaging (0 = instant, 1 = maximum) |
+| `SPLASH_ENABLE` | `1` | Start-up splash screen (costs ~150 KB of flash; `0` leaves it out of the build) |
+| `SPLASH_IMAGE` | `"splash_img.h"` | Header with the splash image (generate your own with `tools/png2splash.py`) |
+| `SPLASH_MS` | `2500` | Minimum splash display time (ms) |
 | `DEBUG_PERF` | `0` | Set to `1` to overlay timing measurements |
 | `WF_TEST_SIGNAL` | `0` | Set to `1` to use a synthetic test signal instead of the ADC |
 | `SD_SAVE_DEF` | `1` | Save received images to SD by default |
@@ -123,10 +126,13 @@ Supports 13 modes (Martin 1/2, Scottie 1/2/DX, Robot 36/72, PD90/120/160/180/240
 ## File structure
 
 ```
-WaterfallSDR/
-├── WaterfallSDR.ino    Main sketch: setup, loop, encoder, parameter bar
+HamDecoder/
+├── HamDecoder.ino    Main sketch: setup, loop, encoder, parameter bar
 ├── config.h            All compile-time constants
 ├── lang.h              TR(es,en) macro for bilingual texts
+├── splash.h/cpp        Start-up splash screen (optional, see SPLASH_ENABLE)
+├── splash_img.h        Splash image, RGB565 (generated)
+├── tools/              make_logo.py, png2splash.py, splash.png
 ├── audio.h/cpp         ADC + DMA capture, decimation, ring buffer
 ├── waterfall.h/cpp     FFT, palette, TFT drawing, SPI DMA driver
 ├── cw_decoder.h/cpp    CW (Morse) decoder with AFC
