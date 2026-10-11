@@ -1,4 +1,4 @@
-# WaterfallSDR
+# HamDecoder
 
 Digital-mode decoder for ham radio, running on an **STM32F411 Black Pill** with a 2.4" ILI9341 TFT display, a rotary encoder and a 24LC512 EEPROM. Built with the Arduino IDE + STM32duino.
 
